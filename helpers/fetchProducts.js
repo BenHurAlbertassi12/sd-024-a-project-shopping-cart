@@ -7,11 +7,13 @@ const fetchProducts = async (busca) => {
   await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${busca}`)
     .then((respostaApi) => respostaApi.json())
     .then((objetoComputador) => objetoComputador);
-  // {
-  //   const pCs = objetoComputador.results.map((skin) => ({
-  //     sku: skin.id, name: skin.title, image: skin.thumbnail,
-  //   }));  console.log(pCs);
+  //   .catch (error) => {
+  // return new Error('You must provide an url');
 };
+// {
+//   const pCs = objetoComputador.results.map((skin) => ({
+//     sku: skin.id, name: skin.title, image: skin.thumbnail,
+//   }));  console.log(pCs);
 // .catch ((error) => new Error('deu ruim'));
 // );};
 
