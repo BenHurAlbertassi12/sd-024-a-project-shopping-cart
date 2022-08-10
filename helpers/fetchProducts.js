@@ -1,6 +1,6 @@
 const fetchProducts = async (busca) => {
   // Var para gurdar o link com o 'sistema' de busca.
-  const linqui = `https://api.mercadolibre.com/sites/MLB/search?q=${busca}`;
+  const linqui = await `https://api.mercadolibre.com/sites/MLB/search?q=${busca}`;
   // Var buscando que vai receber o link enquanto aguarda (acho que posso chamar assim)
   const buscado = await fetch(linqui);
   // Var resultado para 'traduzir' o json
