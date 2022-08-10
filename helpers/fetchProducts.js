@@ -6,15 +6,14 @@ const fetchProducts = async (busca) => {
   // os dados estão devolvendo uma nova promessa 46min00seg
   await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${busca}`)
     .then((respostaApi) => respostaApi.json())
-    .then((objetoComputador) => {
-      const pCs = objetoComputador.results.map((skin) => ({
-        sku: skin.id,
-        name: skin.title,
-        image: skin.thumbnail,
-      }));
-      console.log(pCs);
-    });
+    .then((objetoComputador) => objetoComputador);
+  // {
+  //   const pCs = objetoComputador.results.map((skin) => ({
+  //     sku: skin.id, name: skin.title, image: skin.thumbnail,
+  //   }));  console.log(pCs);
 };
+// .catch ((error) => new Error('deu ruim'));
+// );};
 
 if (typeof module !== 'undefined') {
   module.exports = {
