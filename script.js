@@ -25,6 +25,12 @@ const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) =>
 
   return section;
 };
+
+const pushFetchProducts = async () => {
+  const buscando = await fetchProducts('');
+
+}
+
 console.log(createProductItemElement);
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;

@@ -1,19 +1,16 @@
 const fetchProducts = async (busca) => {
-  // Var para gurdar o link com o 'sistema' de busca.
-  const linqui = await `https://api.mercadolibre.com/sites/MLB/search?q=${busca}`;
-  // Var buscando que vai receber o link enquanto aguarda (acho que posso chamar assim)
+  const linqui = `https://api.mercadolibre.com/sites/MLB/search?q=${busca}`;
   const buscado = await fetch(linqui);
-  // Var resultado para 'traduzir' o json
   const resultado = await buscado.json();
-
-  return resultado;
+  return resultado.results;
 };
+fetchProducts('computador');
 
 if (typeof module !== 'undefined') {
   module.exports = {
     fetchProducts,
   };
 }
-// window.onload = fetchProducts;
 
 // codigo inspirado na aula 9.2 (Pokemon), tempo incial aproximado de 40min
+// linha 7 Rafaell Lacorte-Turma 24 deu a dica do que fazer
