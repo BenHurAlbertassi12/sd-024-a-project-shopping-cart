@@ -24,20 +24,4 @@ describe('1 - Teste a função fetchProducts', () => {
   it('Teste se, ao chamar a função fetchProducts sem argumento, retorna um erro com a mensagem: "You must provide an url".', () => {
     expect(fetchProducts(undefined)).toBe(new Error('You must provide an url'))
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
