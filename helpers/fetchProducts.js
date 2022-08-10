@@ -13,8 +13,7 @@ const fetchProducts = async (busca) => {
         image: skin.thumbnail,
       }));
       console.log(pCs);
-    })
-    .catch((error) => error());
+    });
 };
 
 if (typeof module !== 'undefined') {

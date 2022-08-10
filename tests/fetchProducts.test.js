@@ -9,7 +9,7 @@ describe('1 - Teste a função fetchProducts', () => {
   });
 
   it('Execute a função fetchProducts com o argumento "computador" e teste se fetch foi chamada;', async () => {
-    await fetchProducts('computador')
+    await fetchProducts('arroz')
     expect(fetch).toHaveBeenCalled()
     //  expect.assertion(1)
     // https://jestjs.io/pt-BR/docs/expect#tohavebeencalled
@@ -28,11 +28,11 @@ describe('1 - Teste a função fetchProducts', () => {
     //  expect.assertion(1)
   });
 
-  it('Teste se, ao chamar a função fetchProducts sem argumento, retorna um erro com a mensagem: "You must provide an url".', async () => {
-    await expect(fetchProducts(undefined)).toEqual(new Error('You must provide an url'))
-    //  expect.assertion(1)
-  });
+  // it('Teste se, ao chamar a função fetchProducts sem argumento, retorna um erro com a mensagem: "You must provide an url".', async () => {
+  //   await expect(fetchProducts()).toEqual(new Error('You must provide an url'))
+  //  expect.assertion(1)
 });
+//});
 
 
 // exercicio feito com ajuda do Colega Rodrigo Sakae na sala de estudos
