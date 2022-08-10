@@ -1,27 +1,19 @@
-// sku: é o campo id retornado pela API;
-// name: é o campo title retornado pela API;
-// image: é o campo thumbnail retornado pela API.
-
 const fetchProducts = async (busca) => {
-  // os dados estão devolvendo uma nova promessa 46min00seg
-  await fetch(`https://api.mercadolibre.com/sites/MLB/search?q=${busca}`)
-    .then((respostaApi) => respostaApi.json())
-    .then((objetoComputador) => objetoComputador);
-  //   .catch (error) => {
-  // return new Error('You must provide an url');
+  // Var para gurdar o link com o 'sistema' de busca.
+  const linqui = `https://api.mercadolibre.com/sites/MLB/search?q=${busca}`;
+  // Var buscando que vai receber o link enquanto aguarda (acho que posso chamar assim)
+  const buscado = await fetch(linqui);
+  // Var resultado para 'traduzir' o json
+  const resultado = await buscado.json();
+
+  return resultado;
 };
-// {
-//   const pCs = objetoComputador.results.map((skin) => ({
-//     sku: skin.id, name: skin.title, image: skin.thumbnail,
-//   }));  console.log(pCs);
-// .catch ((error) => new Error('deu ruim'));
-// );};
 
 if (typeof module !== 'undefined') {
   module.exports = {
     fetchProducts,
   };
 }
-window.onload = fetchProducts;
+// window.onload = fetchProducts;
 
 // codigo inspirado na aula 9.2 (Pokemon), tempo incial aproximado de 40min
