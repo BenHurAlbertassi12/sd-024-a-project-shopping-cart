@@ -1,4 +1,3 @@
-// const { fetchProducts } = require('../helpers/fetchProducts');
 
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
@@ -14,7 +13,7 @@ const createCustomElement = (element, className, innerText) => {
   return e;
 };
 
-const createProductItemElement = ({ sku, name, image }) => {
+const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) => {
   const section = document.createElement('section');
   section.className = 'item';
 
@@ -26,10 +25,21 @@ const createProductItemElement = ({ sku, name, image }) => {
   return section;
 };
 
-const chamadaPoducts = async () => {
-  const teste = await fetchProducts();
-  console.log(teste);
+// Criando a chamada do fetchProducts
+const chamadaComputador = async () => {
+  const resBusca = await fetchProducts('computador');
+  // Var resBusca para receber o resultado da busca sobre o prametro 'computador'
+  const filhoResult = document.querySelector('.items');
+  // selecionando a pasta .items
+  resBusca.results.forEach((busca) => {
+    // refino da busca com o forEach para pegar apenas o results
+    const acrescenta = createProductItemElement(busca);
+    // Var acrescenta (append) para trazer o que foi buscado pelo que foi declarado na linha 17
+    filhoResult.appendChild(acrescenta);
+    // Acrecentando a 'criança' fillhoItem
+  });
 };
+chamadaComputador();
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
@@ -46,4 +56,4 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-window.onload = async () => { await chamadaPoducts(); };
+window.onload = () => { };
