@@ -1,8 +1,12 @@
 const fetchProducts = async (busca) => {
-  const linqui = `https://api.mercadolibre.com/sites/MLB/search?q=${busca}`;
-  const buscado = await fetch(linqui);
-  const resultado = await buscado.json();
-  return resultado.results;
+  try {
+    const linqui = `https://api.mercadolibre.com/sites/MLB/search?q=${busca}`;
+    const buscado = await fetch(linqui);
+    const resultado = await buscado.json();
+    return resultado.results;
+  } catch (error) {
+    throw new Error('You must provide an url');
+  }
 };
 fetchProducts('computador');
 
@@ -13,4 +17,4 @@ if (typeof module !== 'undefined') {
 }
 
 // codigo inspirado na aula 9.2 (Pokemon), tempo incial aproximado de 40min
-// linha 7 Rafaell Lacorte-Turma 24 deu a dica do que fazer
+// teste try/catch tbm veio como resposta da mentoria 
