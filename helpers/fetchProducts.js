@@ -15,6 +15,4 @@ if (typeof module !== 'undefined') {
     fetchProducts,
   };
 }
-
-// codigo inspirado na aula 9.2 (Pokemon), tempo incial aproximado de 40min
-// teste try/catch tbm veio como resposta da mentoria 
+// exercicio resolvido com ajuda da mentoria. dia 10 de Agosto. 
