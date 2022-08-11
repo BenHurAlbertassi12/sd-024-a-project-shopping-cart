@@ -1,4 +1,3 @@
-
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -42,10 +41,12 @@ const chamadaComputador = async () => {
 chamadaComputador();
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
+console.log(getSkuFromProductItem);
 
 const cartItemClickListener = (event) => {
   // coloque seu código aqui
   // requisito 5
+  console.log(event);
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -55,5 +56,6 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
+console.log(createCartItemElement);
 
 window.onload = () => { };
