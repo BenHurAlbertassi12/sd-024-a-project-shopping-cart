@@ -24,8 +24,6 @@ const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) =>
   return section;
 };
 
-// codigo resolvido em conjunto com Cris, Uriel Silva e Lorena, sala de estudos numero 10
-
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
@@ -74,8 +72,10 @@ const chamadaComputador = async () => {
     filhoResult.appendChild(acrescenta);
     // Acrecentando a 'criança' fillhoItem
   });
+  // codigo resolvido em conjunto com Cris, Uriel Silva e Lorena, sala de estudos numero 10
 };
 // duas horas na mentoria com o Bruno, o coitado esta morto de cansado de mim, sendo honesto, sem ele eu não teria conseguido, toda a parte de adicionar o item ao carrinho foi feita em mentoria, sou extremamente grato a ele.
+
 window.onload = () => {
   chamadaComputador();
 };

@@ -4,7 +4,7 @@ const saveCartItems = (valorPassado) => {
   localStorage.setItem('cartItems', valorPassado);
   // seu código aqui
 };
-
+// course aula webStorage
 if (typeof module !== 'undefined') {
   module.exports = saveCartItems;
 }
