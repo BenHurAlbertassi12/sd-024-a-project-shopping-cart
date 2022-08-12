@@ -24,29 +24,12 @@ const createProductItemElement = ({ id: sku, title: name, thumbnail: image }) =>
   return section;
 };
 
-// Criando a chamada do fetchProducts
-const chamadaComputador = async () => {
-  const resBusca = await fetchProducts('computador');
-  // Var resBusca para receber o resultado da busca sobre o prametro 'computador'
-  const filhoResult = document.querySelector('.items');
-  // selecionando a pasta .items
-  resBusca.results.forEach((busca) => {
-    // refino da busca com o forEach para pegar apenas o results
-    const acrescenta = createProductItemElement(busca);
-    // Var acrescenta (append) para trazer o que foi buscado pelo que foi declarado na linha 17
-    filhoResult.appendChild(acrescenta);
-    // Acrecentando a 'criança' fillhoItem
-  });
-};
-chamadaComputador();
+// codigo resolvido em conjunto com Cris, Uriel Silva e Lorena, sala de estudos numero 10
 
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
-console.log(getSkuFromProductItem);
 
 const cartItemClickListener = (event) => {
-  // coloque seu código aqui
-  // requisito 5
-  console.log(event);
+  event.target.remove();
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -56,6 +39,43 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   li.addEventListener('click', cartItemClickListener);
   return li;
 };
-console.log(createCartItemElement);
 
-window.onload = () => { };
+const novaFun = (linha) => {
+  const olLinha = document.querySelector('.cart__items');
+  olLinha.appendChild(linha);
+};
+
+const chamadaItem = async (busacaId) => {
+  // console.log(olLinha);
+  const resBusca = await fetchItem(busacaId);
+  const linha = createCartItemElement({
+    sku: resBusca.id,
+    name: resBusca.title,
+    salePrice: resBusca.price,
+  });
+  console.log(linha);
+  novaFun(linha);
+};
+
+const chamadaEnviar = async (event) => {
+  const skull = getSkuFromProductItem(event.target.parentElement);
+  await chamadaItem(skull);
+};
+const chamadaComputador = async () => {
+  const resBusca = await fetchProducts('computador');
+  // Var resBusca para receber o resultado da busca sobre o prametro 'computador'
+  const filhoResult = document.querySelector('.items');
+  // selecionando a pasta .items
+  resBusca.forEach((busca) => { // dois dias tentando resolver, retirei o '.results' e resolveu
+    // refino da busca com o forEach para pegar apenas o results
+    const acrescenta = createProductItemElement(busca);
+    acrescenta.addEventListener('click', chamadaEnviar);
+    // Var acrescenta (append) para trazer o que foi buscado pelo que foi declarado na linha 17
+    filhoResult.appendChild(acrescenta);
+    // Acrecentando a 'criança' fillhoItem
+  });
+};
+// duas horas na mentoria com o Bruno, o coitado esta morto de cansado de mim, sendo honesto, sem ele eu não teria conseguido, toda a parte de adicionar o item ao carrinho foi feita em mentoria, sou extremamente grato a ele.
+window.onload = () => {
+  chamadaComputador();
+};
