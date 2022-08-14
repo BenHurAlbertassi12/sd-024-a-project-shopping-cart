@@ -106,7 +106,6 @@ const chamadaComputador = async () => {
 
 window.onload = () => {
   limpaCarro();
-
   chamadaComputador();
   saveCartItems();
 };
