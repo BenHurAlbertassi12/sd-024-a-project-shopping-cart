@@ -1,3 +1,5 @@
+const cartItems = document.querySelector('.cart__items');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -43,16 +45,33 @@ const novaFun = (linha) => {
   olLinha.appendChild(linha);
 };
 
+const load = () => {
+  const loadItems = document.querySelector('.items');
+  const teste = document.createElement('p');
+  teste.className = 'loading';
+  teste.innerText = 'carregando...';
+  loadItems.appendChild(teste);
+  console.log(loadItems);
+};
+
 const chamadaItem = async (busacaId) => {
-  // console.log(olLinha);
+  load();
   const resBusca = await fetchItem(busacaId);
   const linha = createCartItemElement({
     sku: resBusca.id,
     name: resBusca.title,
     salePrice: resBusca.price,
   });
-  console.log(linha);
+  // saveCartItems(cartItems.innerHTML, totalPrice.innerHTML);
+
   novaFun(linha);
+};
+
+const limpaCarro = () => {
+  const test = document.querySelector('.empty-cart');
+  test.addEventListener('click', () => {
+    cartItems.innerHTML = '';
+  });
 };
 
 const chamadaEnviar = async (event) => {
@@ -60,22 +79,32 @@ const chamadaEnviar = async (event) => {
   await chamadaItem(skull);
 };
 const chamadaComputador = async () => {
-  const resBusca = await fetchProducts('computador');
-  // Var resBusca para receber o resultado da busca sobre o prametro 'computador'
-  const filhoResult = document.querySelector('.items');
-  // selecionando a pasta .items
+  const resBusca = await fetchProducts('computador'); // Var resBusca para receber o resultado da busca sobre o prametro 'computador'
+  const filhoResult = document.querySelector('.items'); // selecionando a pasta .items
   resBusca.forEach((busca) => { // dois dias tentando resolver, retirei o '.results' e resolveu
     // refino da busca com o forEach para pegar apenas o results
     const acrescenta = createProductItemElement(busca);
-    acrescenta.addEventListener('click', chamadaEnviar);
-    // Var acrescenta (append) para trazer o que foi buscado pelo que foi declarado na linha 17
-    filhoResult.appendChild(acrescenta);
-    // Acrecentando a 'criança' fillhoItem
+    // console.log(acrescenta)
+    acrescenta.addEventListener('click', chamadaEnviar);// Var acrescentar (append) para trazer o que foi buscado pelo que foi declarado na linha 17
+    filhoResult.appendChild(acrescenta);// Acrecentando a 'criança' fillhoItem
+    // teste.push(acrescenta);
+    // saveCartItems(teste);
+  }); // codigo resolvido em conjunto com Cris, Uriel Silva e Lorena, sala de estudos numero 10
+};
+const getLocalStorage = () => {
+  const teste = getSavedCartItems();
+  console.log(teste);
+  const list = document.querySelectorAll('li');
+  list.forEach((li) => {
+    li.addEventListener('click', cartItemClickListener);
   });
-  // codigo resolvido em conjunto com Cris, Uriel Silva e Lorena, sala de estudos numero 10
 };
 // duas horas na mentoria com o Bruno, o coitado esta morto de cansado de mim, sendo honesto, sem ele eu não teria conseguido, toda a parte de adicionar o item ao carrinho foi feita em mentoria, sou extremamente grato a ele.
 
+
 window.onload = () => {
+  limpaCarro();
+  getLocalStorage();
   chamadaComputador();
+  saveCartItems();
 };
